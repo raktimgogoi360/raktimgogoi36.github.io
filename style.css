@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css?family=Cinzel');
+
+body	{
+
+	background-image: url(pic1.jpg);
+	background-size: cover;
+     background-position: fill;
+     background-repeat: no-repeat;
+     
+}
+
+
+
+
+ 	.new{
+ 		align-items:left ;
+			background-image:none;
+             font-family: 'Cinzel', serif;
+             font-weight: bold;
+             font-size: 50px;
+			box-shadow: 13px 9px 11px #908E8D;
+			text-align: center;
+			margin: auto;
+            width: 50%;
+            border: 3px #00b300;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 24px;
+            opacity: 0.93;
+            height: 47.7%;
+            font-size: 20px;
+            text-align: center;
+            position: center;
+            color: white;
+           
+             
+            overflow-y: scroll;
+
+     
+ 	}
+ 	.new:hover{
+ 		zoom:110%;
+ 		
+ 	}
+ 	body{
+        background-position: center;
+ 		background-image:url(images/osman-rana-639741-unsplash.jpg);
+           
+        opacity: 0.9;
+        min-height: 100%;
+        background-repeat: no-repeat;
+background-attachment: fixed;
+background-position: center;
+background-size: cover;
+font-family: 'Cinzel', serif;
+overflow-y: scroll;
+ 	}
+ 	h2{
+ 		color: white;
+ 	}
+ 	.note{
+ 		color: red;
+ 		font-size: 20px;
+ 	}
+ 	#tbl_users_list{
+ 		color:white;
+ 		font-size: 19px;
+ 	}
+
+ 
+.uname ,  .uphone , .uid {
+
+
+	background: none;
+	color: white;
+	border: none;
+}
+
+
+.btn  {
+
+  color: white;
+	size: 10%;
+background: none;
+border: none;
+}

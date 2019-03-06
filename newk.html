@@ -1,0 +1,115 @@
+<html>
+<head>
+ <title>Welcome Subscriber</title>
+
+ <link rel="stylesheet" type="text/css" href="style.css">
+ <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/botstrap.min.css">
+
+<script src="https://www.gstatic.com/firebasejs/5.8.5/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyD8AJwMGfvBgP5_BjLpa7HJLPYBaiDNQMM",
+    authDomain: "my-directory-20da0.firebaseapp.com",
+    databaseURL: "https://my-directory-20da0.firebaseio.com",
+    projectId: "my-directory-20da0",
+    storageBucket: "",
+    messagingSenderId: "456059181029"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+<body>
+ <table class="new">
+  <tr>
+   <td>Id: </td>
+   <td><input type="text" class="uid" placeholder="Optional*"  name="id" id="user_id" required /></td>
+  </tr>
+  <tr>
+   <td>User Name: </td>
+   <td><input type="text" class="uname" placeholder="Enter Your Name" name="user_name" id="user_name" /></td>
+  </tr>
+   <tr>
+    <td>Phone Number: </td>
+    <td><input type="text" class="uphone" placeholder="Enter Your Number" name="number" id="number" /></td>
+  </tr>
+   <td colspan="2">
+
+    <input type="button" class="btn " value="Save" onclick="save_user();" />
+   <input type="button" class="btn" value="Delete" onclick="delete_user();" />
+   </td>
+  </tr>
+ </table>
+ 
+ <h2><i><u>Subscriber List:-</u></i></h2>
+ <table id="tbl_users_list" border="1" bordercolor="white" width="100%" >
+  <tr>
+   <td>#ID</td>
+   <td>NAME</td>
+   <td>Phone-Number</td>
+  </tr>
+ </table>
+ 
+ <script>
+ 
+  var tblUsers = document.getElementById('tbl_users_list');
+  var databaseRef = firebase.database().ref('users/');
+  var rowIndex = 1;
+  
+  databaseRef.once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+   var childKey = childSnapshot.key;
+   var childData = childSnapshot.val();
+   
+   var row = tblUsers.insertRow(rowIndex);
+   var cellId = row.insertCell(0);
+   var cellName = row.insertCell(1);
+   var cellNumber=row.insertCell(2);
+   cellId.appendChild(document.createTextNode(childKey));
+   cellName.appendChild(document.createTextNode(childData.user_name));
+    cellNumber.appendChild(document.createTextNode(childData.number));
+   
+   rowIndex = rowIndex + 1;
+    });
+  });
+   
+  function save_user(){
+  	var uid = firebase.database().ref().child('users').push().key;
+  var user_name = document.getElementById('user_name').value;
+  var number = document.getElementById('number').value;
+
+  
+   
+   
+   var data = {
+    user_id: uid,
+    user_name: user_name,
+    number:number
+    
+   }
+   
+   var updates = {};
+   updates['/users/' + uid] = data;
+   firebase.database().ref().update(updates);
+   
+   alert('The user is created successfully!');
+   reload_page();
+  }
+  
+  
+  function delete_user(){
+   var user_id = document.getElementById('user_id').value;
+  
+   firebase.database().ref().child('/users/' + user_id).remove();
+  alert('The user is deleted successfully!');
+   reload_page();
+  }
+  
+  function reload_page(){
+   window.location.reload();
+  }
+  
+ </script>
+ 
+</body>
+</html>
